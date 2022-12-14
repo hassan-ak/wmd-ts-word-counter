@@ -370,3 +370,22 @@
   }
   export { resultTable };
   ```
+
+### 13. Ask user top re-run app
+
+- create `reRun.ts` to ask user to re run the app
+
+  ```ts
+  import inquirer from 'inquirer';
+  async function reRun(): Promise<{ rerun: boolean }> {
+    const result: { rerun: boolean } = await inquirer.prompt([
+      {
+        message: 'Do you want to re-run the app : ',
+        type: 'confirm',
+        name: 'rerun',
+      },
+    ]);
+    return result;
+  }
+  export { reRun };
+  ```
