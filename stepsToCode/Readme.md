@@ -194,3 +194,18 @@
   }
   export { startApp };
   ```
+
+### 8. Create closing message
+
+- Create `quitApp.ts` to display a message before qutting the app
+
+```ts
+import chalk from 'chalk';
+function quitApp(): void {
+  console.log(chalk.bgRed('\nClosing Word Counter, please wait...'));
+  setTimeout((): void => {
+    console.clear();
+  }, 1500);
+}
+export { quitApp };
+```
