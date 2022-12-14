@@ -199,13 +199,33 @@
 
 - Create `quitApp.ts` to display a message before qutting the app
 
-```ts
-import chalk from 'chalk';
-function quitApp(): void {
-  console.log(chalk.bgRed('\nClosing Word Counter, please wait...'));
-  setTimeout((): void => {
-    console.clear();
-  }, 1500);
-}
-export { quitApp };
-```
+  ```ts
+  import chalk from 'chalk';
+  function quitApp(): void {
+    console.log(chalk.bgRed('\nClosing Word Counter, please wait...'));
+    setTimeout((): void => {
+      console.clear();
+    }, 1500);
+  }
+  export { quitApp };
+  ```
+
+### 9. Ask user for a paragraph
+
+- Create `askInput.ts` to ask user for a paragraph or a any other input which is then to be analyzed
+
+  ```ts
+  import inquirer from 'inquirer';
+  async function askInput(): Promise<{ para: string }> {
+    const result: { para: string } = await inquirer.prompt([
+      {
+        message: 'Enter any paragraph : ',
+        type: 'input',
+        name: 'para',
+        default: ' ',
+      },
+    ]);
+    return result;
+  }
+  export { askInput };
+  ```
