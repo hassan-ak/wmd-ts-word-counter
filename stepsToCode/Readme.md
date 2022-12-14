@@ -101,3 +101,31 @@
   ```
 
 - If everything is right we will have a console output.
+
+### 4. Create welcome message
+
+- Create `welcome.ts` will the following content to display welcome message to the user
+
+  ```ts
+  import chalk from 'chalk';
+  import chalkAnimation from 'chalk-animation';
+  let message =
+    '\n********************\n*** Word Counter ***\n********************\n';
+  async function welcome(start: boolean): Promise<boolean> {
+    const animation: chalkAnimation.Animation = chalkAnimation.neon(message);
+    return new Promise<boolean>((resolve) => {
+      if (start) {
+        setTimeout(() => {
+          animation.stop();
+          resolve(false);
+        }, 2000);
+      } else {
+        console.log(chalk.bold.inverse(message));
+        setTimeout(() => {
+          resolve(false);
+        }, 1000);
+      }
+    });
+  }
+  export { welcome };
+  ```
