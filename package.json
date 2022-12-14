@@ -1,0 +1,22 @@
+{
+  "name": "wmd-ts-word-counter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./dist/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node ."
+  },
+  "bin": "./dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hassan-ak/wmd-ts-word-counter.git"
+  },
+  "keywords": [],
+  "author": "Hassan Ali Khan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hassan-ak/wmd-ts-word-counter/issues"
+  },
+  "homepage": "https://github.com/hassan-ak/wmd-ts-word-counter#readme"
+}
