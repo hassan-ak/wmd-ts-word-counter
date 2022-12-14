@@ -252,9 +252,9 @@
   export { analyzeAnimation };
   ```
 
-### 11. analyze input and get results
+### 11. Analyse input and get results
 
-- create `analyze.ts` to analyze given paragraph and get results
+- create `analyze.ts` to analyse given paragraph and get results
 
   ```ts
   function stripPunctuation(para: string): string {
@@ -326,4 +326,47 @@
     });
   }
   export { analyze, FinalResult };
+  ```
+
+### 12. Create table to display results
+
+- create `resultTable.ts` to display results in the form of a table
+
+  ```ts
+  import Table from 'cli-table';
+  import { FinalResult } from './analyze.js';
+  async function resultTable(results: FinalResult) {
+    return new Promise((resolve, reject) => {
+      var operatorsTable = new Table({
+        head: ['Sr. #', 'Description', 'Count'],
+      });
+      let operations: string[][] = [
+        ['01', 'Total number of words', results.wordCount.toString()],
+        ['02', 'Total number of characters', results.charcCount.toString()],
+        ['03', 'Total number of alphabets', results.alphabetCount.toString()],
+        [
+          '04',
+          'Total number of numeric characters',
+          results.numberCount.toString(),
+        ],
+        [
+          '05',
+          'Total number of unique words',
+          results.uniqueWordsCount.toString(),
+        ],
+        [
+          '06',
+          'Total number of unique alphabets',
+          results.uniqueAlphsCount.toString(),
+        ],
+      ];
+      operatorsTable.push(...operations);
+      console.log(operatorsTable.toString());
+      setTimeout(() => {
+        console.log(' ');
+        resolve(true);
+      }, 1000);
+    });
+  }
+  export { resultTable };
   ```
