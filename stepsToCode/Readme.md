@@ -251,3 +251,79 @@
   }
   export { analyzeAnimation };
   ```
+
+### 11. analyze input and get results
+
+- create `analyze.ts` to analyze given paragraph and get results
+
+  ```ts
+  function stripPunctuation(para: string): string {
+    const fromatedParagraph = para.replace(/[.,\/#!$%\^&\*;:{}?=\-_`~()]/g, '');
+    return fromatedParagraph;
+  }
+  interface FinalResult {
+    wordCount: number;
+    alphabetCount: number;
+    numberCount: number;
+    charcCount: number;
+    uniqueWordsCount: number;
+    uniqueAlphsCount: number;
+  }
+  function counter(para: string): FinalResult {
+    let charcList: string[] = [];
+    let charcListRaw = para.split('');
+    for (let elm of charcListRaw) {
+      if (elm != ' ') {
+        charcList.push(elm);
+      }
+    }
+    let charcCount = 0;
+    charcCount = charcList.length;
+    let newParagraph = stripPunctuation(para);
+    let wordList: string[] = [];
+    let wordListraw = newParagraph.split(' ');
+    for (let elm of wordListraw) {
+      if (elm != '') {
+        wordList.push(elm.toLowerCase());
+      }
+    }
+    let wordCount = 0;
+    wordCount = wordList.length;
+    let alphabetList: string[] = [];
+    let numberList: string[] = [];
+    let alphabetListRaw = wordList.join('').split('');
+    for (let elm of alphabetListRaw) {
+      if (isNaN(Number(elm))) {
+        alphabetList.push(elm.toLowerCase());
+      } else {
+        numberList.push(elm);
+      }
+    }
+    let alphabetCount = 0;
+    let numberCount = 0;
+    alphabetCount = alphabetList.length;
+    numberCount = numberList.length;
+    let uniqueWords = [...new Set(wordList)];
+    let uniqueWordsCount = 0;
+    uniqueWordsCount = uniqueWords.length;
+    let uniqueAlphs = [...new Set(alphabetList)];
+    let uniqueAlphsCount = 0;
+    uniqueAlphsCount = uniqueAlphs.length;
+    let finalResult: FinalResult = {
+      wordCount: wordCount,
+      alphabetCount: alphabetCount,
+      numberCount: numberCount,
+      charcCount: charcCount,
+      uniqueWordsCount: uniqueWordsCount,
+      uniqueAlphsCount: uniqueAlphsCount,
+    };
+    return finalResult;
+  }
+  async function analyze(para: string): Promise<FinalResult> {
+    return new Promise<FinalResult>((resolve) => {
+      let response = counter(para);
+      resolve(response);
+    });
+  }
+  export { analyze, FinalResult };
+  ```
