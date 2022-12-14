@@ -389,3 +389,49 @@
   }
   export { reRun };
   ```
+
+### 14. Combine all functionality
+
+- Update `index.ts` to combine all the above said functionality
+
+  ```ts
+  #!/usr/bin/env node
+  import { reRun } from './reRun.js';
+  import { welcome } from './welcome.js';
+  import { quitApp } from './quitApp.js';
+  import { analyze } from './analyze.js';
+  import { startApp } from './startApp.js';
+  import { askStart } from './askStart.js';
+  import { askInput } from './askInput.js';
+  import { instruction } from './instruction.js';
+  import { resultTable } from './resultTable.js';
+  import { analyzeAnimation } from './analyzeAnimation.js';
+  async function app() {
+    console.clear();
+    await welcome(true);
+    await instruction();
+    let start = await askStart();
+    if (start.start) {
+      let reUseCondition = false;
+      await startApp(true);
+      do {
+        await welcome(false);
+        let para = await askInput();
+        await analyzeAnimation();
+        let countingResults = await analyze(para.para);
+        await resultTable(countingResults);
+        let reUse = await reRun();
+        reUseCondition = reUse.rerun;
+        if (reUseCondition) {
+          await startApp(false);
+        } else {
+          quitApp();
+        }
+      } while (reUseCondition);
+    } else {
+      quitApp();
+    }
+  }
+  await app();
+  ```
+
