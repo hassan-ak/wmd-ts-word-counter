@@ -229,3 +229,25 @@
   }
   export { askInput };
   ```
+
+### 10. Create analysis animation
+
+- Create `analyzeAnimation.ts` to create an animataion to be displayed before displaying results
+
+  ```ts
+  import ora, { Ora } from 'ora';
+  import chalk from 'chalk';
+  function analyzeAnimation(): Promise<boolean> {
+    return new Promise<boolean>((resolve) => {
+      console.log('');
+      const spinner: Ora = ora(chalk.green(' Analyzing... '));
+      spinner.color = 'yellow';
+      spinner.start();
+      setTimeout(() => {
+        spinner.stop();
+        resolve(true);
+      }, 1500);
+    });
+  }
+  export { analyzeAnimation };
+  ```
