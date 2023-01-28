@@ -1,6 +1,6 @@
 {
   "name": "wmd-ts-word-counter",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "A CLI based word counter using typescript and published as an executable npm package.",
   "main": "./dist/index.js",
   "type": "module",
