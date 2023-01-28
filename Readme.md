@@ -40,6 +40,10 @@ This project is published as an [npm package](https://www.npmjs.com/package/wmd-
   - Number of Unique Words
   - Number of Unique Alphabets
 
+## Demo
+
+[<img src="wc.PNG" width="75%">](https://youtu.be/8AD0V1miKjs 'CLI Word Counter')
+
 ## Steps to code CLI word counter
 
 All the details to code this app is given [here](https://github.com/hassan-ak/wmd-ts-word-counter/tree/main/stepsToCode/Readme.md).
